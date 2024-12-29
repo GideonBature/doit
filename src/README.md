@@ -1,109 +1,140 @@
-# CampusTut
+# doit Application
 
-CampusTut is a web application designed to connect learners with tutors for academic assistance.
+doit is a task management application that allows users to manage their tasks efficiently. This application is built using Express.js and Prisma, with a PostgreSQL database.
 
 ## Features
 
-- **User Management**: Register as a learner or tutor, login securely, update profile, and delete account.
-- **Tutor Management**: View all tutors, view tutor details, update tutor availability, and delete tutor account.
-- **Course Management**: Create new courses, view all courses, view course details, update course details, and delete courses.
-- **Booking Management**: Create new bookings, view all bookings, view booking details, update booking status, and delete bookings.
-- **Review Management**: Leave reviews for tutors, view all reviews, and view review details.
+- User authentication and authorization.
+- CRUD operations for users.
+- CRUD operations for task management (Todo).
+- Prioritization and categorization of tasks.
+- RESTful API documentation using SwaggerUI.
 
-## Technologies Used
+## Prerequisites
 
-- **Node.js**: Backend runtime environment.
-- **Express.js**: Web framework for Node.js.
-- **MongoDB**: NoSQL database for storing user, tutor, course, review, and booking data.
-- **Redis**: In-memory data structure store for caching.
-- **JWT (JSON Web Tokens)**: Secure authentication and authorization mechanism.
-- **Swagger UI**: API documentation tool for visualizing and interacting with the API endpoints.
-- **bcrypt.js**: Library for hashing passwords.
-- **Validator**: Library for validating and sanitizing user input data.
-- **dotenv**: Library for loading environment variables from a .env file.
-- **Nodemon**: Development tool for automatically restarting the server during development.
+Before running the application, ensure you have the following installed on your system:
 
-## Installation
+- [Node.js](https://nodejs.org/) (v16.x or later recommended)
+- [PostgreSQL](https://www.postgresql.org/) (v12 or later recommended)
+- [npm](https://www.npmjs.com/) (comes with Node.js)
+- [Redis](https://redis.io/docs/latest/operate/oss_and_stack/install/install-redis/)
 
-1. Clone the repository:
+## Getting Started
 
-    ```bash
-    git clone https://github.com/GideonBature/CampusTut.git
-    ```
-
-2. Navigate to the project directory:
-
-    ```bash
-    cd CampusTut
-    ```
-
-3. Install dependencies:
-
-    ```bash
-    npm install
-    ```
-
-4. Create a `.env` file and set the following environment variables:
-
-    ```plaintext
-    PORT=8080
-    MONGODB_LOCAL_URI="mongodb://localhost:27017/campustut"
-    JWT_SECRET="your_jwt_secret"
-    REDIS_URI="redis://localhost:6379"
-    ```
-
-5. Start the server:
-
-    ```bash
-    npm start
-    ```
-
-6. For Development:
-
-    ```bash
-    npm run dev
-    ```
-
-## Usage
-
-- Access the API documentation at http://localhost:8080/api-docs to interact with the API endpoints using Swagger UI.
-- Use tools like Postman or cURL to make requests to the API endpoints.
-
-### Example API Requests
-
-#### Register a new user
+### 1. Clone the Repository
 
 ```bash
-curl -X POST http://localhost:8080/api/register \
-  -H "Content-Type: application/json" \
-  -d '{
-        "name": "Gideon Bature",
-        "email": "gideon.bature@example.com",
-        "password": "password",
-        "role": "learner"
-      }'
+git clone https://github.com/GideonBature/doit.git
+cd doit
 ```
 
-#### Login
+### 2. Install Dependencies
+
+Run the following command to install all necessary dependencies:
 
 ```bash
-curl -X POST http://localhost:8080/api/login \
-  -H "Content-Type: application/json" \
-  -d '{
-        "email": "gideon.bature@example.com",
-        "password": "password"
-      }'
+npm install
 ```
 
-#### Get all users
+### 3. Set Up Environment Variables
+
+Create a `.env` file in the root directory and add the following environment variables:
+
+```env
+DATABASE_URL=postgresql://<username>:<password>@<host>:<port>/<database>
+REDIS_URL="redis://<host>:<port>"
+JWT_SECRET=your_jwt_secret
+JWT_EXPIRY="1h" # for 1 hour
+PORT=5000
+```
+
+Replace `<username>`, `<password>`, `<host>`, `<port>`, and `<database>` with your PostgreSQL credentials and database name. Set a strong value for `JWT_SECRET`.
+
+### 4. Initialize the Database
+
+Run the following Prisma commands to initialize the database:
+
 ```bash
-curl -X GET http://localhost:8080/api/users
+npx prisma migrate dev --name init
+npx prisma generate
 ```
 
-## Contributing
+This will apply the migrations and generate the Prisma client.
 
-Contributions are welcome! Please fork the repository and submit a pull request.
+### 6. Start the Development Server
+
+Run the following command to start the application in development mode:
+
+```bash
+npm run dev
+```
+
+By default, the application runs on `http://localhost:8000`.
+
+## API Documentation
+
+The application includes Swagger-based documentation for all API endpoints.
+
+### Accessing the Documentation
+
+1. Start the server using `npm run dev`.
+2. Navigate to `http://localhost:5000/api-docs` in your browser to view the Swagger UI.
+
+### Example API Endpoints
+
+- **GET** `/users`: Fetch all users.
+
+- **GET** `/users/:id`: Fetch a user by ID.
+
+- **POST** `/users`: Create a new user.
+
+- **PUT** `/users/:id`: Update user details.
+
+- **DELETE** `/users/:id`: Delete a user.
+
+- **GET** `/lists`: Fetch all todo lists for the authenticated user.
+
+- **POST** `/lists`: Create a new todo list.
+
+- **PUT** `/lists/:id`: Update a todo list.
+
+- **DELETE** `/lists/:id`: Delete a todo list.
+
+## Scripts
+
+Here are the available scripts you can use:
+
+- `npm run dev`: Starts the application in development mode using Nodemon.
+- `npm run start`: Starts the application in production mode.
+
+## Folder Structure
+
+```
+do-it/
+├── src/
+│   ├── controllers/       # Contains all controller logic
+│   ├── middlewares/       # Middleware functions for authentication, validation, etc.
+│   ├── models/            # Prisma schema and models
+│   ├── routes/            # Application routes
+│   ├── config/            # Configuration files (e.g., database config)
+│   └── utils/             # Utility functions
+├── .env                   # Environment variables
+├── package.json           # Project metadata and dependencies
+├── README.md              # Project documentation
+└── prisma/                # Prisma schema and migrations
+```
+
+## Contribution Guidelines
+
+1. Fork the repository and clone it locally.
+2. Create a new branch for your feature or bug fix.
+3. Make your changes and commit them with descriptive messages.
+4. Push your changes to your fork and submit a pull request.
 
 ## License
 
-This project is licensed under the [ISC License](LICENSE).
+This project is Open License. See the `LICENSE` file for details.
+
+## Support
+
+For any questions or support, please open an issue on the repository or contact the maintainer.
