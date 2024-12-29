@@ -24,6 +24,7 @@
     "prisma": "^6.1.0"
   },
   "dependencies": {
+    "@prisma/adapter-pg": "^6.1.0",
     "@prisma/client": "^6.1.0",
     "bcrypt": "^5.1.1",
     "bcryptjs": "^2.4.3",
@@ -34,6 +35,7 @@
     "ioredis": "^5.4.2",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.4.0",
+    "pg": "^8.13.1",
     "redis": "^4.6.14",
     "swagger-jsdoc": "^6.2.8",
     "swagger-ui-express": "^5.0.0",
