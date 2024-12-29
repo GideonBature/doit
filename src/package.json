@@ -1,5 +1,5 @@
 {
-  "name": "campustut",
+  "name": "doit",
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
@@ -10,15 +10,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/GideonBature/CampusTut.git"
+    "url": "git+https://github.com/GideonBature/doit.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/GideonBature/CampusTut/issues"
+    "url": "https://github.com/GideonBature/doit/issues"
   },
-  "homepage": "https://github.com/GideonBature/CampusTut#readme",
+  "homepage": "https://github.com/GideonBature/doit/tree/main/src",
   "devDependencies": {
     "nodemon": "^3.1.0",
     "prisma": "^6.1.0"
