@@ -45,7 +45,7 @@ DATABASE_URL=postgresql://<username>:<password>@<host>:<port>/<database>
 REDIS_URL="redis://<host>:<port>"
 JWT_SECRET=your_jwt_secret
 JWT_EXPIRY="1h" # for 1 hour
-PORT=5000
+PORT=8000
 ```
 
 Replace `<username>`, `<password>`, `<host>`, `<port>`, and `<database>` with your PostgreSQL credentials and database name. Set a strong value for `JWT_SECRET`.
@@ -78,7 +78,7 @@ The application includes Swagger-based documentation for all API endpoints.
 ### Accessing the Documentation
 
 1. Start the server using `npm run dev`.
-2. Navigate to `http://localhost:5000/api-docs` in your browser to view the Swagger UI.
+2. Navigate to `http://localhost:8000/api-docs` in your browser to view the Swagger UI.
 
 ### Example API Endpoints
 
@@ -105,7 +105,7 @@ The application includes Swagger-based documentation for all API endpoints.
 Here are the available scripts you can use:
 
 - `npm run dev`: Starts the application in development mode using Nodemon.
-- `npm run start`: Starts the application in production mode.
+- `npm start`: Starts the application in production mode.
 
 ## Folder Structure
 
